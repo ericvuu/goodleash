@@ -1,0 +1,46 @@
+@use "../Variables" as *;
+
+.home-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  background: url("/src/assets/Images/Homepage/home-hero.jpg") center center / cover no-repeat;
+  padding: 0 2vw;
+  z-index: 1;
+  color: $white;
+
+  @media (min-width: 720px) {
+    background-attachment: fixed;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba($black, 0.4);
+    z-index: -1;
+  }
+
+  .home-hero-content {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+    padding: 2rem;
+
+    .hero-heading {
+      font-family: "Cabin", sans-serif;
+      font-size: clamp(4rem, 8vw, 8rem);
+      margin-bottom: 2rem;
+    }
+
+    .hero-subtext {
+      font-family: "Lato", sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      margin-top: 1rem;
+      line-height: 1.4;
+    }
+  }
+}

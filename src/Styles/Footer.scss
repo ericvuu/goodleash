@@ -1,0 +1,86 @@
+@use "../Variables" as *;
+
+.footer {
+  background-color: $primary;
+  color: #fff;
+  padding: 3rem 0;
+  font-size: 1.2rem;
+
+  .container {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .column {
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .logo-column {
+    flex: 0 0 20%;
+    margin-left: 5%;
+
+    @media (max-width: 600px) {
+      margin-left: 0;
+    }
+
+    p {
+      margin: 0;
+
+      a {
+        color: #fff;
+      }
+
+      .logo {
+        width: 100px;
+        display: block;
+      }
+    }
+  }
+
+  .info-column {
+    flex: 0 0 20%;
+
+    ul, li {
+      margin: 0;
+      list-style: none;
+
+      a {
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .text-column {
+    flex: 0 0 50%;
+
+    p {
+      margin: 0;
+      color: #fff;
+      line-height: 1.6;
+
+      a {
+        color: #fff;
+        text-decoration: underline;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
