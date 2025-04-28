@@ -1,19 +1,13 @@
-@use "../Variables" as *;
-
 .home-hero {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 80vh;
+  min-height: 60vh;
   background: url("/src/assets/Images/Homepage/home-hero.jpg") center center / cover no-repeat;
   padding: 0 2vw;
   z-index: 1;
   color: $white;
-
-  @media (min-width: 720px) {
-    background-attachment: fixed;
-  }
 
   &::before {
     content: "";

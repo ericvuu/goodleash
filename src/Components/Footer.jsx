@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Logo from "../assets/Images/logo-white.svg";
 
 const Footer = () => {
@@ -8,7 +9,7 @@ const Footer = () => {
         <div className="row">
           <div className="column logo-column">
             <p>
-              <img className="logo" src={Logo} alt="goodleash logo - footer" />
+              <img className="logo" src={Logo} alt="Goodleash logo - footer" />
             </p>
             <p>
               Powered by&nbsp;
@@ -21,18 +22,11 @@ const Footer = () => {
               </a>
             </p>
           </div>
-          <div className="column info-column">
-            <ul>
-              <li>
-                <a href="">Our Organization</a>
-              </li>
-              <li>
-                <a href="">Our Mission</a>
-              </li>
-              <li>
-                <a href="">Non-discrimination</a>
-              </li>
-            </ul>
+
+          <div className="column links-column">
+            <Link to="/organization">Our Organization</Link>
+            <Link to="/mission">Our Mission</Link>
+            <Link to="/non-discrimination">Non-discrimination</Link>
           </div>
 
           <div className="column text-column">

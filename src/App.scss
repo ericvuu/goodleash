@@ -1,7 +1,7 @@
-@use "./Variables" as *;
-@use "../src/Styles/Header.scss" as *;
-@use "../src/Styles/Footer.scss" as *;
-@use "../src/Styles/Home.scss" as *;
+@import "./Variables";
+@import "../src/Styles/Header.scss";
+@import "../src/Styles/Footer.scss";
+@import "../src/Styles/Home.scss";
 
 
 @font-face {

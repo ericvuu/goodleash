@@ -4,28 +4,29 @@ import { useState, useEffect } from "react";
 import Logo from "../assets/Images/logo-white.svg";
 
 const Header = () => {
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [isHidden, setIsHidden] = useState(false);
+  // const [lastScrollY, setLastScrollY] = useState(0);
+  // const [isHidden, setIsHidden] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        setIsHidden(true);
-      } else {
-        setIsHidden(false);
-      }
-      setLastScrollY(window.scrollY);
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (window.scrollY > lastScrollY) {
+  //       setIsHidden(true);
+  //     } else {
+  //       setIsHidden(false);
+  //     }
+  //     setLastScrollY(window.scrollY);
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
+  //   window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollY]);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, [lastScrollY]);
 
   return (
-    <nav className={`header ${isHidden ? "hidden" : ""}`}>
+    // <nav className={`header ${isHidden ? "hidden" : ""}`}>
+    <nav className="header">
       <Link className="header-brand" to="/">
         <img alt="Goodleash Logo" className="logo" src={Logo} />
       </Link>
