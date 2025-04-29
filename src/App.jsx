@@ -14,7 +14,7 @@ const queryClient = new QueryClient();
 function App() {
   const { location, loading, error } = useGeoLocation();
   const { city, country, state, stateCode, zip } = location || {};
-  const cityState = city && state ? `${city}, ${state}` : "New York, NY";
+  const cityState = city && state ? `${city}, ${state}` : "";
 
   return (
     <QueryClientProvider client={queryClient}>

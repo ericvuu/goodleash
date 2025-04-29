@@ -22,7 +22,7 @@ async function fetchAccessToken() {
 
   const data = await response.json();
   accessToken = data.access_token;
-  tokenExpiry = Date.now() + (data.expires_in - 60) * 1000; // renew 1 minute early
+  tokenExpiry = Date.now() + (data.expires_in - 60) * 1000;
   return accessToken;
 }
 
@@ -60,10 +60,10 @@ export async function searchPets({
   }
 
   const data = await response.json();
-  return data.animals; // returns an array
+  return data.animals;
 }
 
-/** Get list of breeds for a type */
+
 export async function getBreeds(type = "dog") {
   const token = await getAccessToken();
 
@@ -78,28 +78,27 @@ export async function getBreeds(type = "dog") {
   }
 
   const data = await response.json();
-  return data.breeds; // returns an array
+  return data.breeds;
 }
 
-/** Search for dogs based on parameters like type, breed, and location */
+
 export async function searchDogs({
   page = 1,
-  type = "dog", // Default type as dog
+  type = "dog",
   breed = "",
   location = "",
   limit = 20,
 }) {
   const token = await getAccessToken();
 
-  // Set up the search parameters
   const params = new URLSearchParams({
     type: type,
     page: page,
     limit: limit,
   });
 
-  if (breed) params.append("breed", breed);  // Append breed if provided
-  if (location) params.append("location", location);  // Append location if provided
+  if (breed) params.append("breed", breed);
+  if (location) params.append("location", location);
 
   const response = await fetch(`${BASE_URL}/animals?${params}`, {
     headers: {
@@ -112,10 +111,10 @@ export async function searchDogs({
   }
 
   const data = await response.json();
-  return data.animals;  // Returns an array of dogs
+  return data.animals;
 }
 
-/** Get a single animal by ID */
+
 export async function getAnimal(id) {
   const token = await getAccessToken();
 
@@ -130,5 +129,5 @@ export async function getAnimal(id) {
   }
 
   const data = await response.json();
-  return data.animal; // returns one animal object
+  return data.animal;
 }
