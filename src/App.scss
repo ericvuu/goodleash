@@ -2,7 +2,7 @@
 @import "../src/Styles/Header.scss";
 @import "../src/Styles/Footer.scss";
 @import "../src/Styles/Home.scss";
-
+@import "../src/Styles/Breed.scss";
 
 @font-face {
   font-family: "Lato";
@@ -71,6 +71,27 @@ body {
     max-width: 1200px;
   }
 }
+
+/* Internal Banner */
+.internal-banner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+  z-index: 1;
+  text-align: center;
+  min-height: 30vh;
+
+
+  .banner-title {
+    font-size: 4.25rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
 
 /* Grid layout */
 .grid {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const lifestyleCategories = [
   {
@@ -54,17 +55,32 @@ const breedImages = {
   Maltese: "/Images/Homepage/ExploreDogs/maltese.jpg",
 };
 
-const DogCard = ({ breed, image }) => (
-  <div className="card">
-    <img
-      src={image || "/placeholder.jpg"}
-      onError={(e) => (e.target.src = "/placeholder.jpg")}
-      alt={breed}
-      className="card-img"
-    />
-    <h3 className="card-title">{breed}</h3>
-  </div>
-);
+const DogCard = ({ breed, image }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/breed/?breed=${encodeURIComponent(breed)}`);
+  };
+
+  return (
+    <div
+      className="card"
+      onClick={handleClick}
+      style={{ cursor: "pointer" }}
+      title={`View more about ${breed}`}
+      aria-label={`View more about ${breed}`}
+    >
+      <img
+        src={image || "/placeholder.jpg"}
+        onError={(e) => (e.target.src = "/placeholder.jpg")}
+        alt={breed}
+        className="card-img"
+      />
+      <h3 className="card-title">{breed}</h3>
+    </div>
+  );
+};
+
 
 const ExploreDogs = () => {
   return (
@@ -75,7 +91,7 @@ const ExploreDogs = () => {
           <section className="lifestyle" key={lifestyle.title}>
             <h3 className="lifestyle-title">{lifestyle.title}</h3>
             <p className="lifestyle-desc">{lifestyle.description}</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="card-row">
               {lifestyle.breeds.map((breed) => (
                 <DogCard key={breed} breed={breed} image={breedImages[breed]} />
               ))}
