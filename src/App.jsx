@@ -7,12 +7,13 @@ const queryClient = new QueryClient();
 function App() {
   const { location, loading, error } = useGeoLocation();
   const { city, country, state, stateCode, zip} = location || {};
+  const cityState = city && state ? `${city}, ${state}` : "New York, NY";
 
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
         <Routes>
-          <Route path="/" element={<Home city={city} country={country} state={state} stateCode={stateCode} zip={zip}/>} />
+          <Route path="/" element={<Home city={city} country={country} state={state} stateCode={stateCode} zip={zip} cityState={cityState}/>} />
         </Routes>
       </Router>
     </QueryClientProvider>
