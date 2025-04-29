@@ -1,7 +1,7 @@
 
 import { Link} from "react-router-dom";
 import { useState, useEffect } from "react";
-import Logo from "../assets/Images/logo-white.svg";
+import Logo from "/Images/logo-white.svg";
 
 const Header = () => {
   // const [lastScrollY, setLastScrollY] = useState(0);

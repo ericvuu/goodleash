@@ -1,6 +1,7 @@
 import React from "react";
-import HomeHero from "../Components/Homepage/HomeHero";
 import Header from "../Components/Header";
+import HomeHero from "../Components/Homepage/HomeHero";
+import ExploreDogs from "../Components/Homepage/ExploreDogs";
 import Footer from "../Components/Footer";
 import useDogs from "../Hooks/useDogs";
 
@@ -24,6 +25,7 @@ const Home = ({ city, country, state, stateCode, zip, cityState }) => {
     <>
       <Header />
       <HomeHero />
+      <ExploreDogs/>
       <Footer />
     </>
   );
