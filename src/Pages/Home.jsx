@@ -5,20 +5,20 @@ import Footer from "../Components/Footer";
 import useDogs from "../Hooks/useDogs";
 
 const Home = ({ city, country, state, stateCode, zip, cityState }) => {
-  const {
-    data: dogs,
-    isLoading: isLoadingDogs,
-    error: dogsError,
-  } = useDogs({
-    breed: "Akita",
-    location: cityState,
-    page: 1,
-    limit: 20,
-  });
+  // const {
+  //   data: dogs,
+  //   isLoading: isLoadingDogs,
+  //   error: dogsError,
+  // } = useDogs({
+  //   breed: "Akita",
+  //   location: cityState,
+  //   page: 1,
+  //   limit: 20,
+  // });
 
-  if (isLoadingDogs) console.log("Loading dogs...");
-  if (dogsError) console.error("Error fetching dogs:", dogsError);
-  if (dogs) console.log("Fetched dogs:", dogs);
+  // if (isLoadingDogs) console.log("Loading dogs...");
+  // if (dogsError) console.error("Error fetching dogs:", dogsError);
+  // if (dogs) console.log("Fetched dogs:", dogs);
 
   return (
     <>
