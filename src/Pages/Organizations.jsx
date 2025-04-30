@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import useOrganizations from "../Hooks/useOrganizations";
 import InternalBanner from "../Components/InternalBanner";
 import NotFound from "/Images/Homepage/ExploreDogs/not-found.jpg";
 
-const Organizations = ({ city, country, state, stateCode, zip, cityState }) => {
+const Organizations = ({ cityState }) => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const overrideLocation = searchParams.get("location");
+
   const [page, setPage] = useState(1);
   const limit = 20;
 
@@ -14,7 +19,7 @@ const Organizations = ({ city, country, state, stateCode, zip, cityState }) => {
     isLoading: isLoadingOrganizations,
     error: organizationsError,
   } = useOrganizations({
-    location: cityState,
+    location: overrideLocation || cityState,
     page,
     limit,
   });
@@ -74,7 +79,12 @@ const Organizations = ({ city, country, state, stateCode, zip, cityState }) => {
                           ? `, ${organization.address.postcode}`
                           : ""}
                       </p>
-                      <a href={organization.url} className="organization-link">
+                      <a
+                        href={organization.url}
+                        className="organization-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         Visit Website
                       </a>
                     </div>

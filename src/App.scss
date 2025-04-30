@@ -91,6 +91,10 @@ body {
     font-weight: 600;
     line-height: 1.5;
     margin: 0;
+
+    @media (max-width: 720px) {
+       font-size: 2rem;
+    }
   }
 }
 

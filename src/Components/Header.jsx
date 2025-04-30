@@ -89,10 +89,10 @@ const Header = () => {
                 <li className="nav-item">
                   <Link
                     className="nav-link"
-                    to="/partner"
+                    to="/organizations"
                     onClick={() => setIsOpen(false)}
                   >
-                    Partners
+                    Organizations
                   </Link>
                 </li>
               </ul>

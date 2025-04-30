@@ -22,9 +22,9 @@ const organizationCities = [
     location: "San Francisco, CA",
   },
   {
-    name: "Washington DC",
+    name: "Washington, DC",
     image: "/Images/Homepage/Organizations/washington-dc.jpg",
-    location: "Washington DC",
+    location: "Washington, DC",
   },
   {
     name: "Austin",
