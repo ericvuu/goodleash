@@ -28,7 +28,7 @@ export const lifestyleCategories = [
   {
     title: "Laid-Back Companions",
     description: "Chill breeds for a slow-paced, cozy lifestyle.",
-    breeds: ["Basset Hound", "Great Dane", "Bulldog", "Greyhound"],
+    breeds: ["Basset Hound", "Great Dane", "English Bulldog", "Greyhound"],
   },
   {
     title: "First-Time Dog Owners",
@@ -48,7 +48,7 @@ const breedImages = {
   "Siberian Husky": "/Images/Homepage/ExploreDogs/siberian-husky.jpg",
   "Basset Hound": "/Images/Homepage/ExploreDogs/basset-hound.jpg",
   "Great Dane": "/Images/Homepage/ExploreDogs/great-dane.jpg",
-  Bulldog: "/Images/Homepage/ExploreDogs/bulldog.jpg",
+  "English Bulldog": "/Images/Homepage/ExploreDogs/bulldog.jpg",
   Greyhound: "/Images/Homepage/ExploreDogs/greyhound.jpg",
   Beagle: "/Images/Homepage/ExploreDogs/beagle.jpg",
   Boxer: "/Images/Homepage/ExploreDogs/boxer.jpg",
