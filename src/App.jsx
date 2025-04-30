@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import useGeoLocation from "./Hooks/useGeoLocation";
 import Home from "./Pages/Home";
 import Breed from "./Pages/Breed";
+import Dog from "./Pages/Dog";
 import Organizations from "./Pages/Organizations";
 
 const queryClient = new QueryClient();
@@ -60,6 +61,7 @@ function App() {
               />
             }
           />
+          <Route path="/dog/:id" element={<Dog />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
