@@ -1,18 +1,19 @@
 @import "../Variables.scss";
 
-.popular-breeds {
-  background-color: $white;
+.location-section {
+  background-color: $background;
   padding: 2rem 0;
 
-  .breed-links-group {
+  .state-group {
     padding: 1rem;
 
     h5 {
       font-size: 1.35rem;
       margin-bottom: 1rem;
+      color: $black;
     }
 
-    .breeds-grid {
+    .state-cities-list {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 0.5rem 1rem;
@@ -28,10 +29,24 @@
           font-size: 1.2rem;
 
           &:hover {
-            color: #0070f3;
+            color: $primary !important;
+
           }
         }
       }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .state-cities-list {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 0.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .state-cities-list {
+      grid-template-columns: 1fr;
     }
   }
 }

@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import useDogs from "../Hooks/useDogs";
 import InternalBanner from "../Components/InternalBanner";
 import DogCard from "../Components/DogCard";
-import NotFound from "/Images/Homepage/ExploreDogs/not-found.jpg";
+import FindByLocation from "../Components/FindByLocation";
 
 const Breed = ({ city, country, state, stateCode, zip, cityState }) => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const breed = searchParams.get("breed") || "Akita";
+  const breed = searchParams.get("breed") || "";
+  const queryLocation = searchParams.get("location") || cityState;
 
   const [page, setPage] = useState(1);
   const limit = 20;
@@ -21,7 +22,7 @@ const Breed = ({ city, country, state, stateCode, zip, cityState }) => {
     error: dogsError,
   } = useDogs({
     breed,
-    location: cityState,
+    location: queryLocation,
     page,
     limit,
   });
@@ -43,7 +44,7 @@ const Breed = ({ city, country, state, stateCode, zip, cityState }) => {
         bgColor="#faf7f2"
         isVisible={true}
       />
-      <main className="breed-page">
+      <div className="breed-page">
         <div className="container">
           {isLoadingDogs && <p>Loading dogs...</p>}
           {dogsError && <p>Error fetching dogs: {dogsError.message}</p>}
@@ -75,10 +76,15 @@ const Breed = ({ city, country, state, stateCode, zip, cityState }) => {
               </div>
             </>
           ) : (
-            !isLoadingDogs && <p>No dogs found for {breed} in your area.</p>
+            !isLoadingDogs && (
+              <p>
+                No dogs found for {breed} in <strong>{queryLocation}</strong>.
+              </p>
+            )
           )}
         </div>
-      </main>
+      </div>
+      <FindByLocation breed={breed} />
       <Footer />
     </>
   );
