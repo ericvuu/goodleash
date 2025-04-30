@@ -33,37 +33,6 @@ async function getAccessToken() {
   return accessToken;
 }
 
-/** Search pets */
-export async function searchPets({
-  type = "dog",
-  location = "",
-  breed = "",
-  page = 1,
-}) {
-  const token = await getAccessToken();
-
-  const params = new URLSearchParams();
-  params.append("type", type);
-  if (location) params.append("location", location);
-  if (breed) params.append("breed", breed);
-  params.append("page", page);
-  params.append("limit", 20);
-
-  const response = await fetch(`${BASE_URL}/animals?${params}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to search pets");
-  }
-
-  const data = await response.json();
-  return data.animals;
-}
-
-
 export async function getBreeds(type = "dog") {
   const token = await getAccessToken();
 

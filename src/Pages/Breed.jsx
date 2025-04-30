@@ -4,6 +4,7 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import useDogs from "../Hooks/useDogs";
 import InternalBanner from "../Components/InternalBanner";
+import NotFound from "/Images/Homepage/ExploreDogs/not-found.jpg";
 
 const Breed = ({ city, country, state, stateCode, zip, cityState }) => {
   const location = useLocation();
@@ -47,7 +48,7 @@ const Breed = ({ city, country, state, stateCode, zip, cityState }) => {
                 {dogs.map((dog) => (
                   <div key={dog.id} className="card">
                     <img
-                      src={dog?.photos?.[0]?.medium || "/placeholder.jpg"}
+                      src={dog?.photos?.[0]?.medium || NotFound}
                       alt={dog.name}
                       className="card-img"
                     />

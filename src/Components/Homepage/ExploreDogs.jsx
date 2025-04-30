@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import NotFound from "/Images/Homepage/ExploreDogs/not-found.jpg";
 
 export const lifestyleCategories = [
   {
@@ -71,8 +72,8 @@ const DogCard = ({ breed, image }) => {
       aria-label={`View more about ${breed}`}
     >
       <img
-        src={image || "/placeholder.jpg"}
-        onError={(e) => (e.target.src = "/placeholder.jpg")}
+        src={image || NotFound}
+        onError={(e) => (e.target.src = NotFound)}
         alt={breed}
         className="card-img"
       />
