@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import searchIcon from "/Images/search-icon.svg";
-import useBreeds from "../hooks/useBreeds";
+import useBreeds from "../Hooks/useBreeds";
 
 const Form = ({ uPath, uSearch = "", placeholder = "Enter breed" }) => {
   const navigate = useNavigate();
