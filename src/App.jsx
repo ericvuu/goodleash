@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import useGeoLocation from "./Hooks/useGeoLocation";
 import Home from "./Pages/Home";
 import Breed from "./Pages/Breed";
+import Organizations from "./Pages/Organizations";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,19 @@ function App() {
             path="/breed"
             element={
               <Breed
+                city={city}
+                country={country}
+                state={state}
+                stateCode={stateCode}
+                zip={zip}
+                cityState={cityState}
+              />
+            }
+          />
+          <Route
+            path="/organizations"
+            element={
+              <Organizations
                 city={city}
                 country={country}
                 state={state}

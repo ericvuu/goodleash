@@ -1,0 +1,52 @@
+@import "../Variables.scss";
+
+.featured-success {
+  background-color: $secondary;
+  padding: 4rem 1rem;
+
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  .success-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .success-image {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 460px;
+    height: auto;
+    border-radius: 16px;
+    object-fit: cover;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  }
+
+  .success-text {
+    max-width: 600px;
+    color: $black;
+
+    h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: $black;
+    }
+
+    p {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: $black;
+    }
+  }
+}

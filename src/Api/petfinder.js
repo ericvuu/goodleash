@@ -100,3 +100,76 @@ export async function getAnimal(id) {
   const data = await response.json();
   return data.animal;
 }
+
+export async function searchOrganizations({
+  name = "",
+  query = "",
+  location = "",
+  distance = 100,
+  state = "",
+  country = "",
+  sort = "",
+  page = 1,
+  limit = 20,
+}) {
+  const token = await getAccessToken();
+
+  const params = new URLSearchParams();
+
+  if (name) params.append("name", name);
+  if (query) params.append("query", query);
+  if (location) params.append("location", location);
+  if (location && distance) params.append("distance", distance);
+  if (state) params.append("state", state);
+  if (country) params.append("country", country);
+  if (sort) params.append("sort", sort);
+
+  params.append("page", page);
+  params.append("limit", limit);
+
+  try {
+    const response = await fetch(
+      `https://api.petfinder.com/v2/organizations?${params.toString()}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch organizations");
+    }
+
+    const data = await response.json();
+    return data.organizations;
+  } catch (error) {
+    console.error("Error fetching organizations:", error);
+    throw error;
+  }
+}
+
+
+export async function getOrganizationById(id) {
+  if (!id) {
+    throw new Error("Organization ID is required");
+  }
+
+  const token = await getAccessToken();
+
+  const response = await fetch(
+    `https://api.petfinder.com/v2/organizations/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch organization details");
+  }
+
+  const data = await response.json();
+  return data.organization;
+}
