@@ -19,7 +19,6 @@ const Header = () => {
         setIsScrolled(true);
         return;
       }
-
       setIsScrolled(window.innerWidth > 768 && window.scrollY > 0);
     };
 
@@ -36,9 +35,9 @@ const Header = () => {
 
     handleResize();
     handleScroll();
+
     window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
@@ -46,16 +45,17 @@ const Header = () => {
   }, [location]);
 
   const isHome = location.pathname === "/";
-  const showLogoBlack = isScrolled || !isHome;
+  const showBlack = isScrolled || !isHome;
+  const shouldShowNav = isHome ? window.innerWidth < 768 || isScrolled : true;
 
   return (
-    <header className={`header ${isScrolled || !isHome ? "scrolled" : "top"}`}>
+    <header className={`header ${showBlack ? "scrolled" : "top"}`}>
       <nav className="navbar">
         <Link className="header-brand" to="/">
           <img
             alt="Goodleash Logo"
             className="logo"
-            src={showLogoBlack ? LogoBlack : LogoWhite}
+            src={showBlack ? LogoBlack : LogoWhite}
           />
         </Link>
 
@@ -68,33 +68,46 @@ const Header = () => {
           type="button"
         >
           <span
-            className="navbar-toggler-icon"
-            style={{ color: showLogoBlack ? "#000000" : "#ffffff" }}
+            className={`navbar-toggler-icon ${showBlack ? "dark" : ""}`}
           ></span>
         </button>
 
-        <div
-          className={`navbar-collapse ${isOpen ? "open" : "collapse"}`}
-          id="navbarToggler"
-        >
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link" to="/" onClick={() => setIsOpen(false)}>
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/about" onClick={() => setIsOpen(false)}>
-                About
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/organizations" onClick={() => setIsOpen(false)}>
-                Organizations
-              </Link>
-            </li>
-          </ul>
-        </div>
+        {shouldShowNav && (
+          <div
+            className={`navbar-collapse ${isOpen ? "open" : "collapse"}`}
+            id="navbarToggler"
+          >
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                  to="/"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                  to="/about"
+                  onClick={() => setIsOpen(false)}
+                >
+                  About
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                  to="/organizations"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Organizations
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )}
       </nav>
     </header>
   );
