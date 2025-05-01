@@ -55,6 +55,8 @@ export async function searchDogs({
   page = 1,
   type = "dog",
   breed = "",
+  gender = "",
+  color = "",
   location = "",
   limit = 20,
 }) {
@@ -67,6 +69,8 @@ export async function searchDogs({
   });
 
   if (breed) params.append("breed", breed);
+  if (gender) params.append("gender", gender);
+  if (color) params.append("color", color);
   if (location) params.append("location", location);
 
   const response = await fetch(`${BASE_URL}/animals?${params}`, {

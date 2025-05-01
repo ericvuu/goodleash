@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import useDogs from "../Hooks/useDogs";
 import InternalBanner from "../Components/InternalBanner";
+import DogFilters from "../Components/DogFilter";
 import DogCard from "../Components/DogCard";
 import FindByLocation from "../Components/FindByLocation";
 
@@ -11,7 +12,15 @@ const Breed = ({ city, country, state, stateCode, zip, cityState }) => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const breed = searchParams.get("breed") || "";
-  const queryLocation = searchParams.get("location") || cityState;
+  const queryLocationFromURL = searchParams.get("location");
+
+  const defaultLocation = queryLocationFromURL || zip;
+
+  const [filters, setFilters] = useState({
+    gender: "",
+    color: "",
+    queryLocation: defaultLocation,
+  });
 
   const [page, setPage] = useState(1);
   const limit = 20;
@@ -22,10 +31,26 @@ const Breed = ({ city, country, state, stateCode, zip, cityState }) => {
     error: dogsError,
   } = useDogs({
     breed,
-    location: queryLocation,
+    location: filters.queryLocation,
     page,
     limit,
+    gender: filters.gender,
+    color: filters.color,
   });
+
+
+  useEffect(() => {
+    setPage(1);
+  }, [filters]);
+
+  useEffect(() => {
+    if (!filters.queryLocation && !queryLocationFromURL) {
+      setFilters((prevFilters) => ({
+        ...prevFilters,
+        queryLocation: zip,
+      }));
+    }
+  }, [zip, queryLocationFromURL, filters.queryLocation]);
 
   const handlePrevPage = () => {
     if (page > 1) setPage((prev) => prev - 1);
@@ -46,6 +71,7 @@ const Breed = ({ city, country, state, stateCode, zip, cityState }) => {
       />
       <div className="breed-page">
         <div className="container">
+          <DogFilters filters={filters} setFilters={setFilters} />
           {isLoadingDogs && <p>Loading dogs...</p>}
           {dogsError && <p>Error fetching dogs: {dogsError.message}</p>}
 
@@ -78,7 +104,8 @@ const Breed = ({ city, country, state, stateCode, zip, cityState }) => {
           ) : (
             !isLoadingDogs && (
               <p>
-                No dogs found for {breed} in <strong>{queryLocation}</strong>.
+                No dogs found for {breed} in{" "}
+                <strong>{filters.queryLocation}</strong>.
               </p>
             )
           )}
