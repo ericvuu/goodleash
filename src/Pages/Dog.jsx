@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
@@ -10,6 +10,15 @@ import SimilarDogs from "../Components/SimilarDogs";
 const Dog = () => {
   const { id } = useParams();
   const { data: dog, isLoading, error } = useDog(id);
+  const [popupImage, setPopupImage] = useState(null);
+
+  const handleImageClick = (src) => {
+    setPopupImage(src);
+  };
+
+  const closeModal = () => {
+    setPopupImage(null);
+  };
 
   return (
     <>
@@ -35,6 +44,14 @@ const Dog = () => {
                       alt={dog.name}
                       className="dog-large-img"
                       loading="lazy"
+                      onClick={() =>
+                        handleImageClick(
+                          dog.photos?.[0]?.full ||
+                            dog.photos?.[0]?.large ||
+                            NotFound
+                        )
+                      }
+                      style={{ cursor: "pointer" }}
                     />
                   </div>
                   <div className="dog-small-img-container">
@@ -44,13 +61,19 @@ const Dog = () => {
                         src={photo?.medium || NotFound}
                         alt={`${dog.name} - small ${index}`}
                         className="dog-small-img"
+                        onClick={() =>
+                          handleImageClick(
+                            photo?.full || photo?.large || NotFound
+                          )
+                        }
+                        style={{ cursor: "pointer" }}
                       />
                     ))}
                   </div>
                 </div>
 
                 <div className="dog-contact">
-                  <div class="contact-header">
+                  <div className="contact-header">
                     <h4>Ready to Go Home</h4>
                   </div>
                   <p>
@@ -146,6 +169,38 @@ const Dog = () => {
           )}
         </div>
       </div>
+
+      {popupImage && (
+        <div
+          className="image-modal-overlay"
+          onClick={closeModal}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "rgba(0, 0, 0, 0.75)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 9999,
+            cursor: "zoom-out",
+          }}
+        >
+          <img
+            src={popupImage}
+            alt="Full View"
+            style={{
+              maxWidth: "90%",
+              maxHeight: "90%",
+              borderRadius: "10px",
+              boxShadow: "0 0 20px rgba(0,0,0,0.8)",
+            }}
+          />
+        </div>
+      )}
+
       {dog && (
         <SimilarDogs
           name={dog.name}

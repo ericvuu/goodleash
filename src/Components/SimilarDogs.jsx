@@ -12,7 +12,7 @@ const SimilarDogs = ({ name, breed, location }) => {
   return (
     <div className="similar-dogs">
       <div className="container">
-        <h2 className="section-title">Similar dogs to {name}</h2>
+        <h2 className="section-title">Similar dogs to {name?.charAt(0).toUpperCase() + name?.slice(1).toLowerCase()}</h2>
 
         {isLoadingDogs && <p>Loading similar dogs...</p>}
 

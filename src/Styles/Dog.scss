@@ -122,6 +122,10 @@
         text-decoration: none;
         transition: background-color 0.2s ease;
 
+        @media (max-width: 768px) {
+          margin-bottom: 30px;
+        }
+
         &:hover {
           background-color: #005bb5;
         }
@@ -221,6 +225,10 @@
 
   @media (max-width: 768px) {
     padding: 2rem;
+
+    .section-title {
+      font-size: 2rem;
+    }
   }
 
   .section-title {
