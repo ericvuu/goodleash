@@ -5,12 +5,11 @@ import Footer from "../Components/Footer";
 import useDog from "../Hooks/useDog";
 import InternalBanner from "../Components/InternalBanner";
 import NotFound from "/Images/Homepage/ExploreDogs/not-found.jpg";
+import SimilarDogs from "../Components/SimilarDogs";
 
 const Dog = () => {
   const { id } = useParams();
   const { data: dog, isLoading, error } = useDog(id);
-
-  console.log(dog)
 
   return (
     <>
@@ -39,7 +38,7 @@ const Dog = () => {
                     />
                   </div>
                   <div className="dog-small-img-container">
-                    {dog.photos?.slice(1, 3).map((photo, index) => (
+                    {dog.photos?.slice(1).map((photo, index) => (
                       <img
                         key={index}
                         src={photo?.medium || NotFound}
@@ -52,9 +51,7 @@ const Dog = () => {
 
                 <div className="dog-contact">
                   <div class="contact-header">
-                    <h4>
-                      Ready to Go Home
-                    </h4>
+                    <h4>Ready to Go Home</h4>
                   </div>
                   <p>
                     <strong>Email:</strong> {dog.contact?.email}
@@ -79,7 +76,8 @@ const Dog = () => {
                   {dog.gender}
                 </p>
                 <p>
-                  <strong>Breed:</strong> {dog.breeds?.primary}
+                  <strong>Breed:</strong> {dog.breeds?.primary},{" "}
+                  {dog.breeds?.secondary}
                 </p>
                 <p>
                   <strong>Size:</strong> {dog.size}
@@ -148,6 +146,13 @@ const Dog = () => {
           )}
         </div>
       </div>
+      {dog && (
+        <SimilarDogs
+          name={dog.name}
+          breed={dog.breeds.primary}
+          location={`${dog.contact?.address?.city}, ${dog.contact?.address?.state}`}
+        />
+      )}
       <Footer />
     </>
   );
